@@ -20,7 +20,7 @@ I speak Chinese and English. For other languages, please translate before asking
 ## Usage
 
 Download executable file from Release. Note the distinction between amd64 and arm64.
-Repository: [https://github.com/CodSnow/NeverIdle](https://github.com/CodSnow/NeverIdle)
+Repository: [https://github.com/CodSnow/KeepIdle](https://github.com/CodSnow/KeepIdle)
 
 Start a screen on the server and run it.
 If you want to learn about screen command, just Google.
@@ -75,7 +75,7 @@ docker run -d \
   --net=host \
   -e TZ=Asia/Shanghai \
   --restart unless-stopped \
-  ghcr.io/codsnow/neveridle:latest \
+  ghcr.io/codsnow/keepidle:latest \
   -cp 0.25 -mp 0.2 -n 4h -night-start 0 -night-end 6 -idle 5
 ```
 
@@ -86,7 +86,7 @@ Create a `docker-compose.yml` file:
 ```yaml
 services:
   neveridle:
-    image: ghcr.io/codsnow/neveridle:latest
+    image: ghcr.io/codsnow/keepidle:latest
     container_name: neveridle
     restart: unless-stopped
     network_mode: host

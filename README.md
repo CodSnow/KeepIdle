@@ -6,7 +6,7 @@
 ## Usage
 
 从 Release 下载可执行文件。注意区分 amd64 和 arm64。
-仓库地址: [https://github.com/CodSnow/NeverIdle](https://github.com/CodSnow/NeverIdle)
+仓库地址: [https://github.com/CodSnow/KeepIdle](https://github.com/CodSnow/KeepIdle)
 
 在服务器上启动一个 screen，然后执行本程序，用法自己搜。
 
@@ -60,7 +60,7 @@ docker run -d \
   --net=host \
   -e TZ=Asia/Shanghai \
   --restart unless-stopped \
-  ghcr.io/codsnow/neveridle:latest \
+  ghcr.io/codsnow/keepidle:latest \
   -cp 0.25 -mp 0.2 -n 4h -night-start 0 -night-end 6 -idle 5
 ```
 
@@ -71,7 +71,7 @@ docker run -d \
 ```yaml
 services:
   neveridle:
-    image: ghcr.io/codsnow/neveridle:latest
+    image: ghcr.io/codsnow/keepidle:latest
     container_name: neveridle
     restart: unless-stopped
     network_mode: host
