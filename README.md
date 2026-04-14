@@ -1,4 +1,4 @@
-# NeverIdle
+# KeepIdle
 
 [**English**](README_en.md) | **简体中文**
 
@@ -13,7 +13,7 @@
 命令参数：
 
 ```shell
-./NeverIdle -cp 0.15 -m 2 -n 4h
+./KeepIdle -cp 0.15 -m 2 -n 4h
 ```
 
 其中：
@@ -55,7 +55,7 @@
 
 ```bash
 docker run -d \
-  --name neveridle \
+  --name keepidle \
   --net=host \
   -e TZ=Asia/Shanghai \
   --restart unless-stopped \
@@ -69,9 +69,9 @@ docker run -d \
 
 ```yaml
 services:
-  neveridle:
+  keepidle:
     image: ghcr.io/codsnow/keepidle:latest
-    container_name: neveridle
+    container_name: keepidle
     restart: unless-stopped
     network_mode: host
     environment:
@@ -84,3 +84,8 @@ services:
 ```bash
 docker-compose up -d
 ```
+
+---
+
+## 致谢 / Credits
+本项目基于 [layou233/NeverIdle](https://github.com/layou233/NeverIdle) 二次开发，感谢原作者 [layou233](https://github.com/layou233) 提供的优秀基础！

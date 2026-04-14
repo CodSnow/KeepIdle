@@ -1,8 +1,8 @@
 services:
-  neveridle:
+  keepidle:
     build: .
-    image: neveridle:latest
-    container_name: neveridle
+    image: ghcr.io/codsnow/keepidle:latest
+    container_name: keepidle
     restart: unless-stopped
     network_mode: host
     environment:

@@ -1,4 +1,4 @@
-# NeverIdle
+# KeepIdle
 
 **English** | [**简体中文**](README.md)
 
@@ -13,7 +13,7 @@ If you want to learn about screen command, just Google.
 Command arguments：
 
 ```shell
-./NeverIdle -cp 0.15 -m 2 -n 4h
+./KeepIdle -cp 0.15 -m 2 -n 4h
 ```
 
 In which:
@@ -56,7 +56,7 @@ It is recommended not to specify because the default is the lowest priority, mak
 
 ```bash
 docker run -d \
-  --name neveridle \
+  --name keepidle \
   --net=host \
   -e TZ=Asia/Shanghai \
   --restart unless-stopped \
@@ -70,9 +70,9 @@ Create a `docker-compose.yml` file:
 
 ```yaml
 services:
-  neveridle:
+  keepidle:
     image: ghcr.io/codsnow/keepidle:latest
-    container_name: neveridle
+    container_name: keepidle
     restart: unless-stopped
     network_mode: host
     environment:
@@ -85,3 +85,8 @@ Then run:
 ```bash
 docker-compose up -d
 ```
+
+---
+
+## Credits
+This project is based on [layou233/NeverIdle](https://github.com/layou233/NeverIdle). Thanks to the original author [layou233](https://github.com/layou233) for the excellent foundation!

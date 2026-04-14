@@ -7,8 +7,8 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/layou233/neveridle/controller"
-	"github.com/layou233/neveridle/waste"
+	"github.com/CodSnow/KeepIdle/controller"
+	"github.com/CodSnow/KeepIdle/waste"
 )
 
 const Version = "1.0.1"

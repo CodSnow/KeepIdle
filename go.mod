@@ -1,4 +1,4 @@
-module github.com/layou233/neveridle
+module github.com/CodSnow/KeepIdle
 
 go 1.25.0
 
