@@ -11,7 +11,7 @@ import (
 	"github.com/CodSnow/KeepIdle/waste"
 )
 
-const Version = "1.0.1"
+const Version = "1.0.3"
 
 var (
 	FlagCPUPercent             = flag.Float64("cp", 0, "Percent of CPU waste")
@@ -19,6 +19,7 @@ var (
 	FlagMemory                 = flag.Int("m", 0, "GiB of memory waste")
 	FlagMemoryPercent          = flag.Float64("mp", 0, "Percent of memory waste (e.g., 0.2 for 20%)")
 	FlagNetwork                = flag.Duration("n", 0, "Interval for network speed test")
+	FlagNetworkRetry           = flag.Duration("nr", 30*time.Minute, "Retry interval for network speed test when conditions are not met")
 	FlagNetworkConnectionCount = flag.Int("t", 10, "Set concurrent connections for network speed test")
 	FlagNightStart             = flag.Int("night-start", 0, "深夜开始小时 (0-23)")
 	FlagNightEnd               = flag.Int("night-end", 6, "深夜结束小时 (0-23，支持跨夜如 22-6)")
@@ -81,7 +82,7 @@ func main() {
 		nothingEnabled = false
 		fmt.Println("====================")
 		fmt.Println("Starting network speed testing with interval", *FlagNetwork)
-		go waste.Network(*FlagNetwork, *FlagNetworkConnectionCount, *FlagNightStart, *FlagNightEnd, *FlagIdleThreshold)
+		go waste.Network(*FlagNetwork, *FlagNetworkConnectionCount, *FlagNightStart, *FlagNightEnd, *FlagIdleThreshold, *FlagNetworkRetry)
 		runtime.Gosched()
 		fmt.Println("====================")
 	}

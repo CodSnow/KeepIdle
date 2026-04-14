@@ -7,4 +7,4 @@ services:
     network_mode: host
     environment:
       - TZ=Asia/Shanghai
-    command: ["-cp", "0.25", "-mp", "0.2", "-n", "4h", "-t", "10", "-night-start", "0", "-night-end", "6", "-idle", "5"]
+    command: ["-cp", "0.25", "-mp", "0.2", "-n", "4h", "-t", "10", "-night-start", "0", "-night-end", "6", "-idle", "5", "-nr", "30m"]

@@ -43,6 +43,9 @@ E.g., `-night-start 22 -night-end 6` means testing is only allowed between 22:00
 -idle sets the network idle connection threshold (default 5).  
 Combined with the night period parameters, the network speedtest waste will only execute when the system's 'established' connections are below this threshold and it is during the night time, to minimize interference with normal services.
 
+-nr sets the retry interval when the network speedtest conditions are not met (not night time or network not idle).  
+The default is `30m` (30 minutes). Supports formats like `1h`, `5m`.
+
 -p specifics the process priority, followed by a priority value. If not specified, the lowest priority of the platform will be used by default.  
 For UNIX-like systems (such as Linux, FreeBSD, and macOS), the value range is [-20,19], and the higher the number, the lower the priority.  
 For Windows, see [the official documentation](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-setpriorityclass).  
@@ -61,7 +64,7 @@ docker run -d \
   -e TZ=Asia/Shanghai \
   --restart unless-stopped \
   ghcr.io/codsnow/keepidle:latest \
-  -cp 0.25 -mp 0.2 -n 4h -night-start 0 -night-end 6 -idle 5
+  -cp 0.25 -mp 0.2 -n 4h -night-start 0 -night-end 6 -idle 5 -nr 30m
 ```
 
 ### Method 2: Docker Compose (Recommended)

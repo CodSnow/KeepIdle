@@ -42,6 +42,9 @@
 -idle 设置网络空闲的连接数阈值（默认值为 5）。  
 结合深夜时段参数，只有当系统的 established 状态连接数小于此阈值，并且处于深夜时段时，才会执行网络测速，减少对正常业务的干扰。
 
+-nr 设置当不满足测速条件（非深夜或网络不空闲）时的重试间隔时间。  
+默认值为 `30m`（30分钟）。支持类似 `1h`、`5m` 格式。
+
 -p 指设置该进程优先级，后跟随一个优先级数值。不指定则默认使用本平台的最低优先级。  
 对于 UNIX-like 系统（如 Linux、FreeBSD 和 macOS），数值取值范围为 [-20,19] ，数字越大优先级越低。  
 对于 Windows ，参见 [官方文档](https://learn.microsoft.com/zh-cn/windows/win32/api/processthreadsapi/nf-processthreadsapi-setpriorityclass)。  
@@ -60,7 +63,7 @@ docker run -d \
   -e TZ=Asia/Shanghai \
   --restart unless-stopped \
   ghcr.io/codsnow/keepidle:latest \
-  -cp 0.25 -mp 0.2 -n 4h -night-start 0 -night-end 6 -idle 5
+  -cp 0.25 -mp 0.2 -n 4h -night-start 0 -night-end 6 -idle 5 -nr 30m
 ```
 
 ### 方式二: Docker Compose (推荐)

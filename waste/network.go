@@ -46,7 +46,7 @@ func isNetworkIdle(threshold int) bool {
 	return count < threshold
 }
 
-func Network(interval time.Duration, connectionCount int, nightStart, nightEnd, idleThreshold int) {
+func Network(interval time.Duration, connectionCount int, nightStart, nightEnd, idleThreshold int, retryInterval time.Duration) {
 	cache := false
 	st := speedtest.New()
 	st.SetNThread(connectionCount)
@@ -55,8 +55,8 @@ func Network(interval time.Duration, connectionCount int, nightStart, nightEnd, 
 	for {
 		// ====================== 新增：深夜 + 空闲 双重判断 ======================
 		if !isNightTime(nightStart, nightEnd) || !isNetworkIdle(idleThreshold) {
-			fmt.Println("[NETWORK] 非深夜或网络不空闲，跳过本次浪费，5分钟后重检...")
-			time.Sleep(5 * time.Minute) // 频繁检查，避免错过深夜窗口
+			fmt.Printf("[NETWORK] 非深夜或网络不空闲，跳过本次浪费，%v 后重检...\n", retryInterval)
+			time.Sleep(retryInterval) // 频繁检查，避免错过深夜窗口
 			continue
 		}
 		// =====================================================================
