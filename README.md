@@ -1,17 +1,16 @@
 # NeverIdle
 
-[**Español**](README_ES.md) | [**English**](README_en.md) | **简体中文**
+[**English**](README_en.md) | **简体中文**
 
    
 ## Usage
 
-从 Release 下载可执行文件。注意区分 amd64 和 arm64。
+从 Release 下载可执行文件
 仓库地址: [https://github.com/CodSnow/KeepIdle](https://github.com/CodSnow/KeepIdle)
 
 在服务器上启动一个 screen，然后执行本程序，用法自己搜。
 
 命令参数：
-
 
 ```shell
 ./NeverIdle -cp 0.15 -m 2 -n 4h

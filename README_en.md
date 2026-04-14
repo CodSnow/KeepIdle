@@ -1,25 +1,10 @@
 # NeverIdle
 
-[**Español**](README_ES.md) | **English** | [**简体中文**](README.md)
-
-*I love you, but do not stop my machine, could you?*
-
----
-
-**To non-Chinese users:**
-
-Thank you for liking this program! :-P  
-I invented this to share among my Chinese friends at first, but I didn't expect it to become popular in the world.  
-Also, I'm sorry for the late official English README! Now just enjoy it. :-D
-
-If you need help, Google first, and then go to the issue.
-I speak Chinese and English. For other languages, please translate before asking questions. :)
-
----
+**English** | [**简体中文**](README.md)
 
 ## Usage
 
-Download executable file from Release. Note the distinction between amd64 and arm64.
+Download executable file from Release. 
 Repository: [https://github.com/CodSnow/KeepIdle](https://github.com/CodSnow/KeepIdle)
 
 Start a screen on the server and run it.
