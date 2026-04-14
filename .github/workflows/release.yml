@@ -1,0 +1,79 @@
+name: Release KeepIdle
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+            extension: ""
+          - goos: linux
+            goarch: arm64
+            extension: ""
+          - goos: windows
+            goarch: amd64
+            extension: ".exe"
+          - goos: darwin
+            goarch: amd64
+            extension: ""
+          - goos: darwin
+            goarch: arm64
+            extension: ""
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.22.x # Go 1.22 is very stable for this, but we can use 1.22.x which is standard.
+
+      - name: Build binary
+        run: |
+          mkdir -p dist
+          # Setting ldflags to reduce binary size and optionally inject version
+          GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} go build -ldflags "-s -w -X main.Version=${{ github.ref_name }}" -o dist/keepidle-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.extension }} main.go
+
+      - name: Zip artifact
+        run: |
+          cd dist
+          zip keepidle-${{ matrix.goos }}-${{ matrix.goarch }}.zip keepidle-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.extension }}
+
+      - name: Upload artifact (for debug)
+        uses: actions/upload-artifact@v4
+        with:
+          name: keepidle-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: dist/*.zip
+          retention-days: 1
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Display structure of downloaded files
+        run: ls -R artifacts/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/**/*.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
